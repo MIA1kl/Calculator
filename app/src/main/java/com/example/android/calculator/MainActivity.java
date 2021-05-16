@@ -2,6 +2,7 @@ package com.example.android.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    double result=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,15 +22,16 @@ public class MainActivity extends AppCompatActivity {
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 EditText a = (EditText) findViewById(R.id.num1);
                 EditText b = (EditText) findViewById(R.id.num2);
-                TextView res = (TextView) findViewById(R.id.resultTextView);
+
 
                 double num1 = Integer.parseInt(a.getText().toString());
 
                 double num2 = Integer.parseInt(b.getText().toString());
-                double result = num1 + num2;
-                res.setText(Double.toString(result));
+                result = num1 + num2;
+                openActivity2(result);
             }
         });
 
@@ -35,15 +39,17 @@ public class MainActivity extends AppCompatActivity {
         mul_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 EditText a = (EditText) findViewById(R.id.num1);
                 EditText b = (EditText) findViewById(R.id.num2);
-                TextView res = (TextView) findViewById(R.id.resultTextView);
+
 
                 double num1 = Integer.parseInt(a.getText().toString());
 
                 double num2 = Integer.parseInt(b.getText().toString());
-                double result = num1 * num2;
-                res.setText(Double.toString(result));
+                result = num1 * num2;
+                openActivity2(result);
             }
         });
 
@@ -51,15 +57,16 @@ public class MainActivity extends AppCompatActivity {
         div_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 EditText a = (EditText) findViewById(R.id.num1);
                 EditText b = (EditText) findViewById(R.id.num2);
-                TextView res = (TextView) findViewById(R.id.resultTextView);
+
 
                 double num1 = Integer.parseInt(a.getText().toString());
 
                 double num2 = Integer.parseInt(b.getText().toString());
-                double result = num1 / num2;
-                res.setText(Double.toString(result));
+                 result = num1 / num2;
+                openActivity2(result);
             }
         });
 
@@ -67,16 +74,24 @@ public class MainActivity extends AppCompatActivity {
         sub_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 EditText a = (EditText) findViewById(R.id.num1);
                 EditText b = (EditText) findViewById(R.id.num2);
-                TextView res = (TextView) findViewById(R.id.resultTextView);
+
 
                 double num1 = Integer.parseInt(a.getText().toString());
 
                 double num2 = Integer.parseInt(b.getText().toString());
-                double result = num1 - num2;
-                res.setText(Double.toString(result));
+                result = num1 - num2;
+                openActivity2(result);
             }
         });
+    }
+    public void openActivity2(Double result){
+        Intent intent = new Intent(this, MainActivity2.class);
+        intent.putExtra("key",Double.toString(result));
+        startActivity(intent);
+
+
     }
 }
